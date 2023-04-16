@@ -1,4 +1,3 @@
-var fs = require('fs');
 const express = require('express');
 const app = express();
 const https = require('https');
@@ -119,13 +118,5 @@ app.get('/product/:id', async function(req, res) {
 });
 
 
+app.listen(process.env.PORT || 3001, () => console.log(('listening :)')))
 
-var privateKey  = fs.readFileSync('./sslcert/server.key', 'utf8');
-var certificate = fs.readFileSync('./sslcert/server.cert', 'utf8');
-
-var credentials = {key: privateKey, cert: certificate};
-var httpsServer = https.createServer(credentials, app);
-
-httpsServer.listen(process.env.PORT || 3001);
-
-console.log(('listening :)'));
